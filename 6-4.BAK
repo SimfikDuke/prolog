@@ -1,0 +1,31 @@
+DOMAINS
+ 
+tree = empty; tr(integer,tree,tree)
+int=integer
+intl=int*
+ 
+PREDICATES
+ 
+app(intl,intl,intl)
+list_leaves(tree,intl)
+min(intl,int)
+task(tree,int)
+ 
+CLAUSES
+ 
+app([],R,R).
+app([H|T],R,[H|Q]) :- app(T,R,Q).
+ 
+list_leaves(empty,[]).
+list_leaves(tr(N,empty,empty),[N]).
+list_leaves(tr(_,L,R),Z) :- list_leaves(L,LL), list_leaves(R,RR), app(LL,RR,Z), !.
+ 
+min([H],H).
+min([H|T],H) :- min(T,R), H < R.
+min([H|T],R) :- min(T,R), H >= R.
+ 
+task(T,M) :- list_leaves(T,LT), min(LT,M). 
+ 
+GOAL
+ 
+task(tr(-70,tr(3,tr(1,empty,empty),tr(2,empty,empty)),tr(-9,empty,empty)),R),write(R),nl.

@@ -1,0 +1,15 @@
+%line function is y = 2x + 4  //a=2; b=4
+domains
+	x = integer
+predicates
+	where(x,x).
+clauses
+	where(X,Y) :- 2*X + 4 > Y,
+	write("Your point is below"),!.
+	where(X,Y) :- 2*X + 4 < Y,
+	write("Your point is above"),!.
+	where(X,Y) :- 2*X + 4 = Y,
+	write("Your point is on the line").
+	
+goal
+where(0,4), nl, fail.

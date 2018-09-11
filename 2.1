@@ -1,0 +1,21 @@
+%prime
+domains
+	x = integer
+predicates
+	prime(x,x).
+clauses
+	prime(X,Y) :- 
+	Y > X/2,
+	write("TRUE"),!.
+	prime(X,Y) :- 
+	Y > X/2,
+	(X/Y)*Y > 0,
+	Y = Y+1,
+	prime(X,Y),!.
+	prime(X,Y) :-
+	Y > X/2,
+	(X/Y)*Y = 0,
+	write("FALSE").
+		
+goal
+	prime(4,2), nl, fail.
